@@ -8,5 +8,6 @@ namespace TerminalLog.Api.Repositories.Interfaces
         Task<List<Agendamento>> ListarTodas();
         Task Deletar(Agendamento agendamento);
         Task SalvarAlteracoes();
+        Task<Agendamento?> GetAgendamentoId(int id);
     }
 }

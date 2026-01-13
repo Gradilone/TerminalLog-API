@@ -21,6 +21,11 @@ namespace TerminalLog.Api.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Agendamento?> GetAgendamentoId(int id)
+        {
+            return await _context.Agendamentos.FindAsync(id);
+        }
+
         public async Task<List<Agendamento>> ListarTodas()
         {
             return await _context.Agendamentos.ToListAsync();

@@ -38,7 +38,7 @@ namespace TerminalLog.Api.Controllers
             return Ok(doca);
         }
 
-        [HttpPost]
+        [HttpPost("criarDoca")]
         // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Criar([FromBody] Doca doca)
         {
