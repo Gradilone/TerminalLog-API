@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TerminalLog.Api.Models;
 using TerminalLog.Api.Repositories.Interfaces;
 
@@ -6,6 +7,7 @@ namespace TerminalLog.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AgendamentoController : ControllerBase
     {
         private readonly IAgendamentoRepository _agendamentoRepository;
@@ -26,8 +28,16 @@ namespace TerminalLog.Api.Controllers
             }
             return Ok(agendamento);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            
+            var agendamentos = await _agendamentoRepository.ListarTodas();
+            return Ok(agendamentos);
+        }
 
         [HttpPost("criarAgendamento")]
+        [Authorize(Roles = "Transportadora")]
         public async Task<IActionResult> Criar([FromBody] Agendamento agendamento)
         {
             if(agendamento.DataHoraChegada < DateTime.Now)
@@ -36,6 +46,8 @@ namespace TerminalLog.Api.Controllers
             }
 
             var doca = await _docaRepository.GetDocaId(agendamento.DocaId);
+
+            if (doca == null) return NotFound(new { mensagem = $"Não foi encontrada nenhuma doca disponível" });
 
             if(doca.CapacidadePeso < agendamento.PesoCarga)
             {

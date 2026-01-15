@@ -6,5 +6,7 @@ namespace TerminalLog.Api.Repositories.Interfaces
     {
         Task Criar(Usuario usuario);
         Task<List<Usuario>> ListarTodos();
+        Task<Usuario?> GetUsuarioId(int id);
+        Task<Usuario?> GetUsuarioEmail(string email);
     }
 }

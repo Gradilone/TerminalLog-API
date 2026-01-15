@@ -1,4 +1,5 @@
-﻿using static TerminalLog.Api.Models.Enums;
+﻿using System.Text.Json.Serialization;
+using static TerminalLog.Api.Models.Enums;
 
 namespace TerminalLog.Api.Models
 {
@@ -6,8 +7,10 @@ namespace TerminalLog.Api.Models
     {
         public int Id { get; set; }
         public int UsuarioId { get; set; }
+        [JsonIgnore]
         public Usuario? Usuario { get; set; }
         public int DocaId { get; set; }
+        [JsonIgnore]
         public Doca? Doca { get; set; }
         public DateTime DataHoraChegada { get; set; }
         public DateTime DataHoraSaida { get; set; }

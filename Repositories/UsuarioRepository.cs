@@ -24,5 +24,15 @@ namespace TerminalLog.Api.Repositories
         {
             return await _context.Usuarios.ToListAsync();
         }
+
+        public async Task<Usuario?> GetUsuarioId(int id)
+        {
+            return await _context.Usuarios.FindAsync(id);
+        }
+
+        public async Task<Usuario?> GetUsuarioEmail(string email)
+        {
+            return await _context.Usuarios.FindAsync(email);
+        }
     }
 }
