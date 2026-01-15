@@ -17,7 +17,7 @@ O projeto segue princípios de design para garantir manutenção e escalabilidad
     * Responsabilidade Unica (SRP): Classes com funções bem definidas.
     * Inversao de Dependencia (DIP): Dependência de interfaces, não de implementações concretas.
 * Configuração de Segurança (JWT)
-    * Como a API exige Token, explique como o usuário deve se autenticar no Swagger.
+
  
 ## Estrutura do Projeto
 * `Controllers/`: Endpoints da API.
